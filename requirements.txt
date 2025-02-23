@@ -4,7 +4,7 @@ dash-core-components==2.0.0
 dash-html-components==2.0.0
 dash-table==5.0.0
 dash_ag_grid==31.3.1rc1
-dash_auth==2.3.0
+dash-auth==2.0.0
 gunicorn==23.0.0
 python-docx==1.1.2
 python-dotenv==1.0.1
