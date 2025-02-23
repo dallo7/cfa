@@ -207,4 +207,4 @@ def update_output(n_clicks, prompt):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8079)
+    app.run_server(debug=True)
