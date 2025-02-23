@@ -50,6 +50,8 @@ def generate_toolkit_document(query):
 # --- Dash App Setup ---
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+server = app.server
+
 app.layout = html.Div([
     html.H1("CFA SANDBOX AUT0-TOOLKIT POC", style={
         'textAlign': 'center',
