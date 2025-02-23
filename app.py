@@ -1,6 +1,8 @@
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output, State
+import dash_auth
+import Dashauth
 import time
 import base64
 import io
@@ -36,6 +38,11 @@ def generate_toolkit_document(query):
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 server = app.server
+
+auth = dash_auth.BasicAuth(
+    app,
+    Dashauth.VALID_USERNAME_PASSWORD_PAIRS
+)
 
 app.layout = html.Div([
     html.H1("CFA SANDBOX AUT0-TOOLKIT POC", style={
