@@ -1,13 +1,21 @@
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output, State
-import dash_auth
-import Dashauth
 import time
 import base64
+import multiprocessing
 import io
+import dash_auth
+import Dashauth
 from docx import Document
 from helpers import *
+
+
+# This function processes one section only!
+def process_section(args):
+    title, function, optimisedQuery = args
+    content = function(optimisedQuery)
+    return (title, content)
 
 # --- Document Generation Function ---
 def generate_toolkit_document(query):
@@ -25,9 +33,16 @@ def generate_toolkit_document(query):
     set_document_styles(doc)
     doc.add_heading("CFA SANDBOX-GENERATED TOOLKIT", level=0)
     add_table_of_contents(doc)
-    for title, function in sections:
-        content = function(optimisedQuery)
+
+    pool = multiprocessing.Pool(processes=len(sections))
+    args_list = [(title, func, optimisedQuery) for title, func in sections]
+    results = pool.map(process_section, args_list)
+    pool.close()
+    pool.join()
+
+    for title, content in results:
         add_section(doc, title, content, level=1)
+
     buffer = io.BytesIO()
     doc.save(buffer)
     buffer.seek(0)
@@ -37,12 +52,12 @@ def generate_toolkit_document(query):
 # --- Dash App Setup ---
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-server = app.server
-
 auth = dash_auth.BasicAuth(
     app,
     Dashauth.VALID_USERNAME_PASSWORD_PAIRS
 )
+
+server = app.server
 
 app.layout = html.Div([
     html.H1("CFA SANDBOX AUT0-TOOLKIT POC", style={
@@ -78,7 +93,6 @@ app.layout = html.Div([
         id="loading-1",
         type="default",
         children=[
-            # Loader message inserted above the dynamic content
             html.Div(
                 [
                     "👋🏿 Thinking! and Retrieving data for generating the Toolkit will take less than 3 mins 😇",
@@ -133,7 +147,6 @@ def update_output(n_clicks, prompt):
     if n_clicks == 0 or prompt is None:
         return "", "", "", False
 
-    # Simulate a long-running process with progress updates
     progress_updates = []
     thought_process = []
 
@@ -207,4 +220,4 @@ def update_output(n_clicks, prompt):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8079)
+    app.run_server(debug=True, port=8000)
