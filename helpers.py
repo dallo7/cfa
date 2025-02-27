@@ -11,7 +11,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-YOUR_API_KEY = os.getenv("YOUR_API_KEY")
+# YOUR_API_KEY = os.getenv("YOUR_API_KEY")
+YOUR_API_KEY="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"
 
 def determine_ai_toolkit_type(user_input):
     messages = [
