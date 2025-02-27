@@ -27,6 +27,7 @@ def generate_toolkit_document(query):
     add_table_of_contents(doc)
     for title, function in sections:
         content = function(optimisedQuery)
+        print(content)
         add_section(doc, title, content, level=1)
     buffer = io.BytesIO()
     doc.save(buffer)
