@@ -10,6 +10,7 @@ import Dashauth
 from docx import Document
 from helpers import *
 
+YOUR_API_KEY="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"
 
 # This function processes one section only!
 def process_section(args):
