@@ -11,7 +11,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-YOUR_API_KEY = os.getenv("YOUR_API_KEY")
+# YOUR_API_KEY = os.getenv("YOUR_API_KEY")
+YOUR_API_KEY="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"
 
 def determine_ai_toolkit_type(user_input):
     messages = [
@@ -47,6 +48,7 @@ def determine_ai_toolkit_type(user_input):
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
+        # timeout=60
     )
 
     extracted_data = response.choices[0].message.content
@@ -91,6 +93,7 @@ def introduction_to_ai_and_context(query):
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
+        # timeout=60
     )
 
     extracted_data = response.choices[0].message.content
@@ -132,6 +135,7 @@ def ai_applications_in_journalism(query):
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
+        # timeout=60
     )
 
     extracted_data = response.choices[0].message.content
@@ -170,6 +174,7 @@ def ai_readiness_and_risk_assessment(query):
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
+        # timeout=60
     )
 
     extracted_data = response.choices[0].message.content
@@ -210,6 +215,7 @@ def practical_guidance_for_ai_use(query):
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
+        # timeout=60
     )
 
     extracted_data = response.choices[0].message.content
@@ -248,6 +254,7 @@ def ethical_and_responsible_ai_use(query):
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
+        # timeout=60
     )
 
     extracted_data = response.choices[0].message.content
@@ -288,6 +295,7 @@ def challenges_and_future_trends(query):
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
+        # timeout=60
     )
 
     extracted_data = response.choices[0].message.content
@@ -327,6 +335,7 @@ def resources_and_training_materials(query):
     response = client.chat.completions.create(
         model="sonar-pro",
         messages=messages,
+        # timeout=60
     )
 
     extracted_data = response.choices[0].message.content
