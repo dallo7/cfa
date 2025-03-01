@@ -36,7 +36,7 @@ def generate_toolkit_document(query):
 
 
 # --- Dash App Setup ---
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], title="CFA")
 
 server = app.server
 
